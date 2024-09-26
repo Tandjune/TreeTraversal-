@@ -1,3 +1,6 @@
+from queue import Queue
+
+
 class Node:
     def __init__(self, value: int) -> None:
         self.value = value
@@ -35,3 +38,30 @@ class Tree:
             return f"{self.get_root()} {left} {right}"
         if traversal == "postorder":
             return f"{left} {right} {self.get_root()}"
+        
+    def bf_search_tree(self) -> str:
+        queue = Queue()
+        res = ""
+        adjascent_list = {}
+
+        def get_chirdren(tree: Tree):
+            if not tree:
+                return adjascent_list
+            
+            r = tree.right.get_root() if tree.right else None
+            l = tree.left.get_root() if tree.left else None
+            adjascent_list[tree.get_root()] = [l, r]
+            get_chirdren(tree.left)
+            get_chirdren(tree.right)
+            return adjascent_list
+        
+        get_chirdren(self)
+        queue.put(self.get_root())
+
+        while not queue.empty():
+            item = queue.get()
+            res += f"{item}  "
+            for i in adjascent_list[item]:
+                if i:
+                    queue.put(i)
+        return res
