@@ -28,6 +28,7 @@ class Tree:
     def df_search_tree(self, traversal: str = "inorder") -> str:
         left = ""
         right = ""
+        res = ""
         if self.left:
             left = self.left.df_search_tree(traversal)
         if self.right:
@@ -35,9 +36,9 @@ class Tree:
         if traversal == "inorder":
             return f"{left} {self.get_root()} {right}"
         if traversal == "preorder":
-            return f"{self.get_root()} {left} {right}"
+            return f" {self.get_root()} {left}{right}"
         if traversal == "postorder":
-            return f"{left} {right} {self.get_root()}"
+            return f"{left}{right} {self.get_root()} "
         
     def bf_search_tree(self) -> str:
         queue = Queue()
@@ -65,3 +66,25 @@ class Tree:
                 if i:
                     queue.put(i)
         return res
+    
+
+node1 = Tree(Node(1))
+node2 = Tree(Node(2))
+node3 = Tree(Node(3))
+node4 = Tree(Node(4))
+node5 = Tree(Node(5))
+node6 = Tree(Node(6))
+node7 = Tree(Node(7))
+
+
+r = node6.set_left(node5).set_right(node7)
+l = node2.set_left(node1).set_right(node3)
+tree = node4.set_left(l).set_right(r)
+df1 = tree.df_search_tree()
+df2 = tree.df_search_tree("preorder")
+df3 = tree.df_search_tree("postorder")
+bf = tree.bf_search_tree()
+print(f"Inorder Depth-first search: {df1}")
+print(f"Preorder Depth-first search: {df2}")
+print(f"Postorder Depth-first search: {df3}")
+print(f"Breadth-first search: {bf}")
