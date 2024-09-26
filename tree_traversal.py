@@ -21,3 +21,17 @@ class Tree:
     def set_right(self, right_tree: "Tree") -> "Tree":
         self.right = right_tree
         return self
+    
+    def df_search_tree(self, traversal: str = "inorder") -> str:
+        left = ""
+        right = ""
+        if self.left:
+            left = self.left.df_search_tree(traversal)
+        if self.right:
+            right = self.right.df_search_tree(traversal)
+        if traversal == "inorder":
+            return f"{left} {self.get_root()} {right}"
+        if traversal == "preorder":
+            return f"{self.get_root()} {left} {right}"
+        if traversal == "postorder":
+            return f"{left} {right} {self.get_root()}"
