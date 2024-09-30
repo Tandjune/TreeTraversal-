@@ -28,7 +28,7 @@ class Tree:
     def df_search_tree(self, traversal: str = "inorder") -> str:
         left = ""
         right = ""
-        res = ""
+
         if self.left:
             left = self.left.df_search_tree(traversal)
         if self.right:
@@ -68,6 +68,33 @@ class Tree:
         return res
     
 
+class BinarySearchTree (Tree):
+
+    def addNode(self, value:int) -> "BinarySearchTree":
+        node = Node(value)
+        root = self.get_root()
+
+        if root == value:
+            return self
+        if root > value:
+            self.left = self.left.addNode(value) if self.left  else BinarySearchTree(node)
+            return self
+        if root < value:
+            self.right = self.right.addNode(value) if self.right else BinarySearchTree(node)
+            return self
+    
+    
+    def set_left(self, left_tree: "BinarySearchTree") -> "BinarySearchTree":
+        if self.get_root() > left_tree.get_root():
+            self.left = left_tree
+        return self
+      
+    def set_right(self, right_tree: "BinarySearchTree") -> "BinarySearchTree":
+        if self.get_root() < right_tree.get_root():
+            self.right = right_tree
+        return self
+
+
 node1 = Tree(Node(1))
 node2 = Tree(Node(2))
 node3 = Tree(Node(3))
@@ -76,10 +103,11 @@ node5 = Tree(Node(5))
 node6 = Tree(Node(6))
 node7 = Tree(Node(7))
 
-
 r = node6.set_left(node5).set_right(node7)
 l = node2.set_left(node1).set_right(node3)
+
 tree = node4.set_left(l).set_right(r)
+
 df1 = tree.df_search_tree()
 df2 = tree.df_search_tree("preorder")
 df3 = tree.df_search_tree("postorder")
