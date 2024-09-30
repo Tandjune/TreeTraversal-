@@ -92,6 +92,17 @@ class BinarySearchTree (Tree):
         if self.get_root() < right_tree.get_root():
             self.right = right_tree
         return self
+    
+    def search(self, value: int) -> bool:
+        root = self.get_root()
+        if root == value:
+            return True
+        if root > value:
+            res = self.left.search(value) if self.left else False
+            return res
+        if root < value:
+            res = self.right.search(value) if self.right else False
+            return res
 
 
 node1 = Tree(Node(1))
@@ -128,3 +139,5 @@ print(f"Inorder Depth-first search: {df1}")
 print(f"Preorder Depth-first search: {df2}")
 print(f"Postorder Depth-first search: {df3}")
 print(f"Breadth-first search: {bf}")
+print(f"6 found: {tree2.search(6)}, 0 found: {tree2.search(0)}, 3 found: {tree2.search(3)}")
+print(f"9 found: {tree2.search(9)}, -1 found: {tree2.search(-1)}, 10 found: {tree2.search(10)}")
