@@ -69,7 +69,6 @@ class Tree:
     
 
 class BinarySearchTree (Tree):
-
     def addNode(self, value:int) -> "BinarySearchTree":
         node = Node(value)
         root = self.get_root()
@@ -112,6 +111,19 @@ df1 = tree.df_search_tree()
 df2 = tree.df_search_tree("preorder")
 df3 = tree.df_search_tree("postorder")
 bf = tree.bf_search_tree()
+print(f"Inorder Depth-first search: {df1}")
+print(f"Preorder Depth-first search: {df2}")
+print(f"Postorder Depth-first search: {df3}")
+print(f"Breadth-first search: {bf}")
+
+node = BinarySearchTree(Node(3))
+tree2 = node.addNode(1).addNode(2).addNode(0).addNode(5).addNode(4).addNode(6)
+
+print("\nExamples for the binary search tree:\n")
+df1 = tree2.df_search_tree()
+df2 = tree2.df_search_tree("preorder")
+df3 = tree2.df_search_tree("postorder")
+bf = tree2.bf_search_tree()
 print(f"Inorder Depth-first search: {df1}")
 print(f"Preorder Depth-first search: {df2}")
 print(f"Postorder Depth-first search: {df3}")
