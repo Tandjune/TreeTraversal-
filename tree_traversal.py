@@ -67,6 +67,13 @@ class Tree:
                     queue.put(i)
         return res
     
+    def depth(self) -> int:
+        res = 1
+        r = self.right.depth() if self.right else 0
+        l = self.left.depth() if self.left else 0
+
+        return res + max(r,l)
+    
 
 class BinarySearchTree (Tree):
     def addNode(self, value:int) -> "BinarySearchTree":
@@ -113,10 +120,10 @@ node5 = Tree(Node(5))
 node6 = Tree(Node(6))
 node7 = Tree(Node(7))
 
-r = node6.set_left(node5).set_right(node7)
-l = node2.set_left(node1).set_right(node3)
+right = node6.set_left(node5).set_right(node7)
+left = node2.set_left(node1).set_right(node3)
 
-tree = node4.set_left(l).set_right(r)
+tree = node4.set_left(left).set_right(right)
 
 df1 = tree.df_search_tree()
 df2 = tree.df_search_tree("preorder")
@@ -141,3 +148,6 @@ print(f"Postorder Depth-first search: {df3}")
 print(f"Breadth-first search: {bf}")
 print(f"6 found: {tree2.search(6)}, 0 found: {tree2.search(0)}, 3 found: {tree2.search(3)}")
 print(f"9 found: {tree2.search(9)}, -1 found: {tree2.search(-1)}, 10 found: {tree2.search(10)}")
+print(f"The depth of node1: {node1.depth()}")
+print(f"The depth of left: {left.depth()}")
+print(f"The depth of tree: {tree.depth()}")
