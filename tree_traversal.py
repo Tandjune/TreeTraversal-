@@ -63,7 +63,7 @@ class Tree:
             item = queue.get()
             res += f"{item}  "
             for i in adjascent_list[item]:
-                if i:
+                if not i == None:
                     queue.put(i)
         return res
     
@@ -129,6 +129,8 @@ df1 = tree.df_search_tree()
 df2 = tree.df_search_tree("preorder")
 df3 = tree.df_search_tree("postorder")
 bf = tree.bf_search_tree()
+
+print("\nExamples of tree traversal:\n")
 print(f"Inorder Depth-first search: {df1}")
 print(f"Preorder Depth-first search: {df2}")
 print(f"Postorder Depth-first search: {df3}")
@@ -137,7 +139,7 @@ print(f"Breadth-first search: {bf}")
 node = BinarySearchTree(Node(3))
 tree2 = node.addNode(1).addNode(2).addNode(0).addNode(5).addNode(4).addNode(6)
 
-print("\nExamples for the binary search tree:\n")
+print("\nExamples of tree traversal for the binary search tree:\n")
 df1 = tree2.df_search_tree()
 df2 = tree2.df_search_tree("preorder")
 df3 = tree2.df_search_tree("postorder")
@@ -146,8 +148,12 @@ print(f"Inorder Depth-first search: {df1}")
 print(f"Preorder Depth-first search: {df2}")
 print(f"Postorder Depth-first search: {df3}")
 print(f"Breadth-first search: {bf}")
+
+print("\nExamples of searches for the binary search tree:\n")
 print(f"6 found: {tree2.search(6)}, 0 found: {tree2.search(0)}, 3 found: {tree2.search(3)}")
 print(f"9 found: {tree2.search(9)}, -1 found: {tree2.search(-1)}, 10 found: {tree2.search(10)}")
+
+print("\nExamples of tree depths:\n")
 print(f"The depth of node1: {node1.depth()}")
 print(f"The depth of left: {left.depth()}")
-print(f"The depth of tree: {tree.depth()}")
+print(f"The depth of tree: {tree2.depth()}")
